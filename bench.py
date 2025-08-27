@@ -13,7 +13,7 @@ def main():
     min_ouput_len = 1
     max_ouput_len = 10 # 1024
 
-    path = os.path.expanduser("/workspace/huggingface/Qwen3-0.6B/")
+    path = os.path.expanduser("~/huggingface/Qwen3-0.6B/")
     llm = LLM(path, enforce_eager=False, max_model_len=4096)
 
     prompt_token_ids = [[randint(0, 10000) for _ in range(randint(min_input_len, max_input_len))] for _ in range(num_seqs)]
