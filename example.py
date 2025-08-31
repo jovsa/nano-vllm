@@ -18,7 +18,6 @@ def main():
             [{"role": "user", "content": prompt}],
             tokenize=False,
             add_generation_prompt=True,
-            enable_thinking=True
         )
         for prompt in prompts
     ]
