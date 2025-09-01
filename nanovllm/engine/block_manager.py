@@ -22,6 +22,9 @@ class Block:
         self.hash = -1
         self.token_ids = []
 
+    def __repr__(self):
+        return f"Block(block_id={self.block_id}, ref_count={self.ref_count}, hash={self.hash}, token_ids={self.token_ids})"
+
 
 class BlockManager:
 
@@ -56,6 +59,11 @@ class BlockManager:
     def can_allocate(self, seq: Sequence) -> bool:
         return len(self.free_block_ids) >= seq.num_blocks
 
+
+    def print_blocks(self):
+        for block in self.blocks:
+            print(block)
+
     def allocate(self, seq: Sequence):
         assert not seq.block_table
         h = -1
@@ -80,6 +88,7 @@ class BlockManager:
                 block.update(h, token_ids)
                 self.hash_to_block_id[h] = block_id
             seq.block_table.append(block_id)
+        # breakpoint()
 
     def deallocate(self, seq: Sequence):
         for block_id in reversed(seq.block_table):
